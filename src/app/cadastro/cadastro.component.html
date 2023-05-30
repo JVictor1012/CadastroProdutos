@@ -1,0 +1,42 @@
+<router-outlet></router-outlet>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+
+<form>
+    <div>
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" name="codigo" [(ngModel)]="produto.codigo">
+    </div>
+
+    <div>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" [(ngModel)]="produto.nome">
+    </div>
+
+    <div>
+  <label for="descricao">Descrição:</label>
+      <input type="text" id="descricao" name="descricao" [(ngModel)]="produto.descricao">
+    </div>
+
+    <div>
+      <label for="valor">Valor:</label>
+      <input type="text" id="valor" name="valor" [(ngModel)]="produto.valor">
+    </div>
+    
+
+    <button type="submit" (click)="cadastrar()">Cadastrar</button>
+
+</form>
+  
+
+    
+</body>
+</html>
