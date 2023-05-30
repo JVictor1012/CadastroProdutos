@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { ProdutoService } from '../produto.service';
+import { ProdutoService } from '../model/produto.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Produto } from '../model/Produto';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -8,15 +11,41 @@ import { ProdutoService } from '../produto.service';
 })
 export class CadastroComponent {
 
-  produto : any = {}
+  formulario : FormGroup
 
-  constructor(private service: ProdutoService){
+  produto : Produto;
 
+  isCadastrado : boolean = false
+  isInvalido : boolean = false
+
+  constructor(private service: ProdutoService, private formBuilder: FormBuilder){
+    this.produto = new Produto('', '', '', '')
+    this.formulario = this.formBuilder.group({
+      codigo: [this.produto.codigo, [Validators.required]],
+      nome: [this.produto.nome, Validators.required],
+      descricao: [this.produto.descricao, [Validators.required, Validators.minLength(20)]],
+      valor: [this.produto.valor, Validators.required]
+      
+    });
   }
+
+
+  
 
   cadastrar(){
-    this.service.addProduto(this.produto);
-    this.produto = {}
-  }
+    if (this.formulario.valid) {
+      const produto: Produto = this.formulario.value;
+      this.service.addProduto(produto);
 
+      this.isCadastrado = true
+      this.isInvalido = false
+
+
+    }else{
+      this.isInvalido = true
+      this.isCadastrado = false
+    }
+
+    
+  }
 }
