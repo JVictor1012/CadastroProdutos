@@ -2,6 +2,7 @@
 
 - Projeto feito em Angular 
 - Consistem em uma aplicação que cadastra produtos localmente e os lista em uma nova página `/lista`
+- Na pasta `Diagramas` é onde se encontra o fluxograma da aplicação
 
 ## Instalação
 
